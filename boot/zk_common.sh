@@ -35,21 +35,3 @@ function zk_common_delegated_dataset
     chmod 777 ${ZK_ROOT}
     sudo -u zookeeper mkdir -p ${ZK_ROOT}/zookeeper
 }
-
-# sets up location of dataDir
-function zk_common_set_dataDir
-{
-    local MANIFEST_DIR=$1
-    local ZK_ROOT=$2
-
-    local IN_FILES=$(find ${MANIFEST_DIR} -name '*.in')
-    local FNAME=
-    local OUT_FILE=
-
-    for IN_FILE in IN_FILES; do
-        OUT_FILE=${IN_FILE%.in}
-        echo "Creating $(echo ${OUT_FILE} | cut -f6- -d'/')"
-        $(/opt/local/bin/gsed -e "s#@@ZK_ROOT@@#${ZK_ROOT}#" ${IN_FILE} \
-          > ${OUT_FILE})
-    done
-}

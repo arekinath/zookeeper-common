@@ -51,11 +51,10 @@ function zk_common_log_rotation
 # Configuration from zk_common.sh
 #
 log4j.rootLogger=INFO, LOGFILE
-log4j.appender.LOGFILE=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.LOGFILE=org.apache.log4j.FileAppender
 log4j.appender.LOGFILE.File=${zookeeper.log.dir}/${zookeeper.log.file}
 log4j.appender.LOGFILE.Append=true
 log4j.appender.LOGFILE.Threshold=${zookeeper.log.threshold}
-log4j.appender.LOGFILE.DatePattern='.'yyyy-MM-dd-HH
 log4j.appender.LOGFILE.layout=org.apache.log4j.PatternLayout
 log4j.appender.LOGFILE.layout.ConversionPattern=%d{ISO8601} [myid:%X{myid}] - %-5p [%t:%C{1}@%L] - %m%n
 EOF

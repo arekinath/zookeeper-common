@@ -8,13 +8,13 @@
     Copyright (c) 2014, Joyent, Inc.
 -->
 
-# Shared Zookeeper config repo
+# zookeeper-common
 
-- Repository: <git@git.joyent.com:zk-base.git>
-- Who: Matt
-- Tickets/bugs: <https://devhub.joyent.com/jira/browse/HEAD>
+This repository is part of the Joyent SmartDataCenter project (SDC).  For
+contribution guidelines, issues, and general documentation, visit the main
+[SDC](http://github.com/joyent/sdc) project page.
 
 This repo is intended as a common submodule of the sdc-zookeeper and binder
-zones, to reduce drift in the ZK.
+zones, to reduce drift in ZK.
 
 For all other docs, see those repos.

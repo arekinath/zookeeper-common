@@ -15,6 +15,19 @@
 
 ZK_ROOT=/zookeeper
 
+function zk_add_etc_hosts
+{
+    suffix=$(cat /etc/resolv.conf | grep '^domain' | awk '{print $2}')
+    if [[ "z$suffix" = "z" ]]; then
+        suffix="local"
+    fi
+    host=$(hostname)
+    echo "# THIS IS ONLY FOR ZOOKEEPER" >> /etc/hosts
+    echo "# (the JVM hangs at startup if it can't resolve its own name)" \
+        >> /etc/hosts
+    echo "127.0.0.1 ${host} ${host}.${suffix}" >> /etc/hosts
+}
+
 function zk_common_import
 {
     # Install zookeeper package, need to touch this file to disable the license prompt
@@ -23,6 +36,7 @@ function zk_common_import
     local SVC_ROOT=$1
     local MANIFEST=${SVC_ROOT}/smf/manifests/zookeeper.xml
 
+    zk_add_etc_hosts
     svccfg import ${MANIFEST} \
         || fatal "unable to import Zookeeper from ${MANIFEST}"
 }
